@@ -1,652 +1,561 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en" class="dark scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Rail Rasoi - Premium On-Seat Train Dining</title>
-  <style>
-    :root {
-      --primary: #ff4757;
-      --primary-dark: #e84118;
-      --accent: #ffa502;
-      --bg: #f1f2f6;
-      --surface: #ffffff;
-      --text-dark: #2f3542;
-      --text-muted: #747d8c;
-      --green: #2ed573;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      --radius: 16px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text-dark);
-      padding-bottom: 110px;
-    }
-
-    /* Top Navigation Header */
-    header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 12px 18px;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-icon {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      box-shadow: 0 4px 10px rgba(255, 71, 87, 0.3);
-    }
-
-    .brand-text h1 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      line-height: 1.1;
-    }
-
-    .brand-text p {
-      font-size: 0.7rem;
-      color: var(--primary);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .rating-badge {
-      background: #fef2f2;
-      border: 1px solid #fee2e2;
-      color: var(--primary);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* Hero Banner */
-    .hero {
-      background: linear-gradient(135deg, #1e272e, #2f3542);
-      color: white;
-      padding: 24px 18px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(5px);
-      padding: 4px 12px;
-      border-radius: 30px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #ffda79;
-    }
-
-    .hero h2 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      line-height: 1.25;
-      margin-bottom: 8px;
-    }
-
-    .hero p {
-      font-size: 0.85rem;
-      color: #a4b0be;
-    }
-
-    /* Trust Highlights Row */
-    .trust-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .trust-item {
-      text-align: center;
-    }
-
-    .trust-item span {
-      display: block;
-      font-size: 1.2rem;
-      margin-bottom: 2px;
-    }
-
-    .trust-item p {
-      font-size: 0.68rem;
-      color: #dcdde1;
-      font-weight: 600;
-    }
-
-    /* Main Container */
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-
-    /* Cards */
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(0, 0, 0, 0.03);
-    }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #f1f2f6;
-    }
-
-    .card-header .icon {
-      font-size: 1.2rem;
-    }
-
-    .card-header h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-
-    /* Form Fields */
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .form-group.full {
-      grid-column: span 2;
-    }
-
-    label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1.5px solid #eccc68;
-      border-radius: 10px;
-      font-size: 0.92rem;
-      background: #fafafa;
-      transition: all 0.2s ease;
-      outline: none;
-    }
-
-    input:focus {
-      background: #ffffff;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.15);
-    }
-
-    /* Menu Items */
-    .menu-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid #f1f2f6;
-    }
-
-    .menu-card:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .food-tag {
-      font-size: 0.65rem;
-      font-weight: 800;
-      padding: 2px 6px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 4px;
-    }
-
-    .veg { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
-    .special { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
-
-    .food-info h4 {
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-
-    .food-info p {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .food-price {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-top: 4px;
-    }
-
-    /* Quantity Counter */
-    .add-counter {
-      display: flex;
-      align-items: center;
-      background: #f1f2f6;
-      border-radius: 10px;
-      padding: 4px;
-      border: 1px solid #dfe4ea;
-    }
-
-    .counter-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: white;
-      border: none;
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: var(--text-dark);
-      cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      transition: all 0.1s active;
-    }
-
-    .counter-btn:active {
-      transform: scale(0.92);
-    }
-
-    .counter-value {
-      width: 28px;
-      text-align: center;
-      font-weight: 800;
-      font-size: 0.95rem;
-    }
-
-    /* Bottom Sticky Action Bar */
-    .bottom-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid #e1e2e6;
-      padding: 12px 16px;
-      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08);
-      z-index: 200;
-    }
-
-    .bar-wrapper {
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .bill-summary {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .bill-items {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .bill-total {
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: var(--text-dark);
-    }
-
-    .btn-whatsapp {
-      background: linear-gradient(135deg, #25d366, #128c7e);
-      color: white;
-      border: none;
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-weight: 800;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
-      transition: transform 0.2s;
-    }
-
-    .btn-whatsapp:active {
-      transform: scale(0.96);
-    }
-
-    /* Footer Note */
-    .footer-note {
-      text-align: center;
-      padding: 20px 0 10px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Top Glass Header -->
-  <header>
-    <div class="brand">
-      <div class="brand-icon">🚅</div>
-      <div class="brand-text">
-        <h1>Rail Rasoi</h1>
-        <p>Express Seat Dining</p>
-      </div>
-    </div>
-    <div class="rating-badge">
-      ★ 4.9 <span style="color:#a4b0be; font-weight:normal;">(2k+ Orders)</span>
-    </div>
-  </header>
-
-  <!-- Hero Banner -->
-  <section class="hero">
-    <div class="hero-content">
-      <span class="hero-tag">✨ 100% Fresh & Hygienic Guarantee</span>
-      <h2>Train Safar Mein Ab Manta Taza Khana!</h2>
-      <p>Aapki seat par direct hot & fresh delivery, zero waiting time ke saath.</p>
-      
-      <div class="trust-row">
-        <div class="trust-item">
-          <span>🧼</span>
-          <p>Hygiene Packed</p>
-        </div>
-        <div class="trust-item">
-          <span>⚡</span>
-          <p>On-Seat Delivery</p>
-        </div>
-        <div class="trust-item">
-          <span>💵</span>
-          <p>Pay On Delivery</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Content Form -->
-  <div class="container">
-    
-    <!-- Step 1: Journey Details -->
-    <div class="card">
-      <div class="card-header">
-        <span class="icon">📍</span>
-        <h3>Yatri Ki Jankari (Journey Details)</h3>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-group full">
-          <label>Yatri Ka Naam (Full Name)</label>
-          <input type="text" id="custName" placeholder="E.g. Rahul Sharma" />
-        </div>
-        
-        <div class="form-group full">
-          <label>Mobile / WhatsApp Number</label>
-          <input type="tel" id="custPhone" placeholder="10 Digit Number" />
-        </div>
-
-        <div class="form-group">
-          <label>Train No. / Name</label>
-          <input type="text" id="trainNo" placeholder="E.g. 12951 Express" />
-        </div>
-
-        <div class="form-group">
-          <label>PNR No. (Optional)</label>
-          <input type="number" id="pnrNo" placeholder="10 Digits" />
-        </div>
-
-        <div class="form-group">
-          <label>Coach & Seat No.</label>
-          <input type="text" id="seatNo" placeholder="E.g. B2 - 45" />
-        </div>
-
-        <div class="form-group">
-          <label>Delivery Station</label>
-          <input type="text" id="station" placeholder="E.g. Nagpur Jn" />
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 2: Food Menu -->
-    <div class="card">
-      <div class="card-header">
-        <span class="icon">🍱</span>
-        <h3>Menu (Taza & Swadist Khana)</h3>
-      </div>
-
-      <!-- Item 1 -->
-      <div class="menu-card">
-        <div class="food-info">
-          <span class="food-tag veg">PURE VEG</span>
-          <h4>Deluxe Veg Thali</h4>
-          <p>4 Butter Roti, Paneer Masala, Dal Tadka, Jeera Rice, Sweets & Salad</p>
-          <div class="food-price">₹130</div>
-        </div>
-        <div class="add-counter">
-          <button class="counter-btn" onclick="updateQty('vegThali', -1)">-</button>
-          <span class="counter-value" id="qty-vegThali">0</span>
-          <button class="counter-btn" onclick="updateQty('vegThali', 1)">+</button>
-        </div>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="menu-card">
-        <div class="food-info">
-          <span class="food-tag special">NO ONION GARLIC</span>
-          <h4>Shuddh Jain Thali</h4>
-          <p>Jain Special Sabzi, Dal, 4 Plain Roti, Basmati Rice & Salad</p>
-          <div class="food-price">₹140</div>
-        </div>
-        <div class="add-counter">
-          <button class="counter-btn" onclick="updateQty('jainThali', -1)">-</button>
-          <span class="counter-value" id="qty-jainThali">0</span>
-          <button class="counter-btn" onclick="updateQty('jainThali', 1)">+</button>
-        </div>
-      </div>
-
-      <!-- Item 3 -->
-      <div class="menu-card">
-        <div class="food-info">
-          <span class="food-tag veg">HOT SNACK</span>
-          <h4>Special Chole Bhature</h4>
-          <p>2 Fluffy Bhature, Spicy Amritsari Chole & Pickle</p>
-          <div class="food-price">₹99</div>
-        </div>
-        <div class="add-counter">
-          <button class="counter-btn" onclick="updateQty('choleBhature', -1)">-</button>
-          <span class="counter-value" id="qty-choleBhature">0</span>
-          <button class="counter-btn" onclick="updateQty('choleBhature', 1)">+</button>
-        </div>
-      </div>
-
-      <!-- Item 4 -->
-      <div class="menu-card">
-        <div class="food-info">
-          <span class="food-tag veg">BEVERAGE</span>
-          <h4>Chilled Mineral Water (1L)</h4>
-          <p>Sealed Fresh Packaged Drinking Water</p>
-          <div class="food-price">₹20</div>
-        </div>
-        <div class="add-counter">
-          <button class="counter-btn" onclick="updateQty('waterBottle', -1)">-</button>
-          <span class="counter-value" id="qty-waterBottle">0</span>
-          <button class="counter-btn" onclick="updateQty('waterBottle', 1)">+</button>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="footer-note">
-      🔒 Safe & Secure Order • No Advance Payment Needed
-    </div>
-
-  </div>
-
-  <!-- Bottom Floating Bar -->
-  <div class="bottom-bar">
-    <div class="bar-wrapper">
-      <div class="bill-summary">
-        <span class="bill-items" id="itemCount">0 Items added</span>
-        <div class="bill-total">₹<span id="grandTotal">0</span></div>
-      </div>
-      <button class="btn-whatsapp" onclick="sendOrder()">
-        <span>Confirm Order</span> 📱
-      </button>
-    </div>
-  </div>
-
-  <script>
-    // ⚠️ CRITICAL: YAHAN APNA 10-DIGIT NUMBER DAALNA HAI (AAGE 91 LAGA KAR)
-    const MY_WHATSAPP_NUMBER = "919028521796"; 
-
-    const prices = {
-      vegThali: 130,
-      jainThali: 140,
-      choleBhature: 99,
-      waterBottle: 20
-    };
-
-    const names = {
-      vegThali: "Deluxe Veg Thali",
-      jainThali: "Shuddh Jain Thali",
-      choleBhature: "Special Chole Bhature",
-      waterBottle: "Mineral Water (1L)"
-    };
-
-    let cart = {
-      vegThali: 0,
-      jainThali: 0,
-      choleBhature: 0,
-      waterBottle: 0
-    };
-
-    function updateQty(item, change) {
-      if (cart[item] + change >= 0) {
-        cart[item] += change;
-        document.getElementById(`qty-${item}`).innerText = cart[item];
-        calculateTotal();
-      }
-    }
-
-    function calculateTotal() {
-      let total = 0;
-      let count = 0;
-      for (let item in cart) {
-        total += cart[item] * prices[item];
-        count += cart[item];
-      }
-      document.getElementById('grandTotal').innerText = total;
-      document.getElementById('itemCount').innerText = `${count} Item${count === 1 ? '' : 's'} added`;
-    }
-
-    function sendOrder() {
-      const name = document.getElementById('custName').value.trim();
-      const phone = document.getElementById('custPhone').value.trim();
-      const train = document.getElementById('trainNo').value.trim();
-      const pnr = document.getElementById('pnrNo').value.trim();
-      const seat = document.getElementById('seatNo').value.trim();
-      const station = document.getElementById('station').value.trim();
-
-      if (!name || !phone || !train || !seat || !station) {
-        alert("Kripya saari zaroori details (Naam, Phone, Train, Seat/Coach, Delivery Station) bharein!");
-        return;
-      }
-
-      let orderList = [];
-      let total = 0;
-      for (let item in cart) {
-        if (cart[item] > 0) {
-          orderList.push(`• ${names[item]} x ${cart[item]} = ₹${cart[item] * prices[item]}`);
-          total += cart[item] * prices[item];
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFE | Not For Everyone - Uncompromising Purity</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#090A0F',
+                            card: '#12151E',
+                            accent: '#00FF66',
+                            cyan: '#00E5FF',
+                            border: '#222736',
+                            subtext: '#94A3B8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
         }
-      }
+    </script>
+    <!-- Google Fonts & Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #090A0F;
+            color: #F8FAFC;
+        }
+        .glow-accent {
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.25);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #00FF66 0%, #00E5FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-perspective {
+            perspective: 1000px;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090A0F;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00FF66;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-accent selection:text-black">
 
-      if (orderList.length === 0) {
-        alert("Kripya kam se kam ek food item select karein!");
-        return;
-      }
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#090A0F]/80 backdrop-blur-md border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl font-black tracking-widest gradient-text">NFE</span>
+                <span class="hidden sm:inline-block h-4 w-[1px] bg-brand-border"></span>
+                <span class="hidden sm:inline-block text-xs uppercase tracking-wider text-brand-subtext font-medium">Uncompromising Purity</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#lab-simulator" class="hover:text-brand-accent transition-colors">Lab Simulator</a>
+                <a href="#packaging" class="hover:text-brand-accent transition-colors">Savage Packaging</a>
+                <a href="#waitlist" class="hover:text-brand-accent transition-colors">City Demand</a>
+            </nav>
+            <div>
+                <a href="#waitlist" class="bg-brand-accent hover:bg-emerald-400 text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider px-5 py-2.5 rounded-full transition-all glow-accent flex items-center gap-2">
+                    <span>Join Waitlist</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </header>
 
-      // Format professional WhatsApp invoice message
-      let msg = `*🍱 NEW TRAIN FOOD ORDER - RAIL RASOI*\n`;
-      msg += `----------------------------------------\n`;
-      msg += `*👤 PASSENGER DETAILS:*\n`;
-      msg += `• *Naam:* ${name}\n`;
-      msg += `• *Mobile:* ${phone}\n`;
-      msg += `• *Train:* ${train}\n`;
-      msg += `• *PNR:* ${pnr || 'Not Provided'}\n`;
-      msg += `• *Seat/Coach:* ${seat}\n`;
-      msg += `• *Station:* ${station}\n\n`;
-      msg += `*🛒 ORDER ITEMS:*\n${orderList.join('\n')}\n\n`;
-      msg += `----------------------------------------\n`;
-      msg += `*💰 TOTAL AMOUNT:* ₹${total}\n`;
-      msg += `*💵 PAYMENT:* Cash/UPI on Seat Delivery\n`;
-      msg += `----------------------------------------\n`;
-      msg += `_Order sent via Rail Rasoi Web App_`;
+    <!-- HERO SECTION -->
+    <section class="relative pt-36 pb-20 md:pt-48 md:pb-32 overflow-hidden border-b border-brand-border/50">
+        <!-- Background Ambient Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-brand-cyan/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-      const encodedMsg = encodeURIComponent(msg);
-      window.open(`https://wa.me/${MY_WHATSAPP_NUMBER}?text=${encodedMsg}`, '_blank');
-    }
-  </script>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-card border border-brand-border text-xs font-semibold uppercase tracking-widest text-brand-accent mb-8">
+                <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+                Asset-Light Pure Dairy Network
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-[1.1] mb-6">
+                ZERO CHEMICALS.<br/>
+                ZERO WATER.<br/>
+                <span class="gradient-text">100% RAW TRUTH.</span>
+            </h1>
+
+            <p class="text-base sm:text-xl text-brand-subtext max-w-2xl mx-auto mb-10 font-normal leading-relaxed">
+                Market dairy is toxic. We don't make milk — we run a relentless quality check network with live lab reports for every batch.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#waitlist" class="w-full sm:w-auto bg-brand-accent text-black font-extrabold text-base px-8 py-4 rounded-xl hover:bg-emerald-400 transition-all transform hover:-translate-y-0.5 glow-accent text-center">
+                    Reserve Priority Access
+                </a>
+                <a href="#lab-simulator" class="w-full sm:w-auto bg-brand-card hover:bg-slate-800 text-white border border-brand-border font-bold text-base px-8 py-4 rounded-xl transition-all text-center flex items-center justify-center gap-2">
+                    <i data-lucide="flask-conical" class="w-5 h-5 text-brand-cyan"></i>
+                    Test Live Simulator
+                </a>
+            </div>
+
+            <!-- Mini Trust Stats -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 border-t border-brand-border/40 text-left">
+                <div class="bg-brand-card/40 p-4 rounded-xl border border-brand-border/50">
+                    <div class="text-brand-accent font-black text-2xl">0.00%</div>
+                    <div class="text-xs text-brand-subtext font-medium mt-1">Urea & Detergent Tolerance</div>
+                </div>
+                <div class="bg-brand-card/40 p-4 rounded-xl border border-brand-border/50">
+                    <div class="text-brand-cyan font-black text-2xl">QR Verified</div>
+                    <div class="text-xs text-brand-subtext font-medium mt-1">Live Batch Testing</div>
+                </div>
+                <div class="bg-brand-card/40 p-4 rounded-xl border border-brand-border/50">
+                    <div class="text-white font-black text-2xl">100% Glass</div>
+                    <div class="text-xs text-brand-subtext font-medium mt-1">Jar Packaging for NFE</div>
+                </div>
+                <div class="bg-brand-card/40 p-4 rounded-xl border border-brand-border/50">
+                    <div class="text-brand-accent font-black text-2xl" id="heroDemandCounter">1,842</div>
+                    <div class="text-xs text-brand-subtext font-medium mt-1">Active Waitlist Backers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: LIVE PURITY BATCH SIMULATOR -->
+    <section id="lab-simulator" class="py-20 relative border-b border-brand-border/50 bg-[#0B0D14]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <h2 class="text-xs font-black uppercase tracking-widest text-brand-accent mb-2">Radical Transparency</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Live Batch Lab Simulator</h3>
+                <p class="text-brand-subtext text-sm mt-3">Slide to test different live farm batches or scan sample QR to view the real-time purity certificate.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Interactive Controls -->
+                <div class="lg:col-span-5 bg-brand-card p-6 sm:p-8 rounded-2xl border border-brand-border">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="text-sm font-semibold text-white">Select Batch ID:</span>
+                        <span id="batchLabel" class="font-mono text-brand-accent font-bold bg-brand-accent/10 px-3 py-1 rounded border border-brand-accent/30">BATCH #NFE-8042</span>
+                    </div>
+
+                    <!-- Slider -->
+                    <div class="mb-8">
+                        <label for="batchSlider" class="block text-xs font-medium text-brand-subtext mb-2">Drag to inspect farm batches:</label>
+                        <input id="batchSlider" type="range" min="8040" max="8048" value="8042" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-accent">
+                        <div class="flex justify-between text-[10px] font-mono text-brand-subtext mt-2">
+                            <span>#NFE-8040</span>
+                            <span>#NFE-8044</span>
+                            <span>#NFE-8048</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick QR Scanner Simulator Button -->
+                    <div class="space-y-3">
+                        <button id="scanBtn" onclick="simulateScan()" class="w-full bg-slate-800 hover:bg-slate-700 text-brand-cyan border border-brand-cyan/30 font-bold py-3 px-4 rounded-xl transition flex items-center justify-center gap-2 text-sm">
+                            <i data-lucide="qr-code" class="w-4 h-4"></i>
+                            <span>Scan Instant Sample QR</span>
+                        </button>
+                        <p class="text-[11px] text-brand-subtext text-center">Every physical NFE packet comes with a unique QR linking to this exact report data.</p>
+                    </div>
+                </div>
+
+                <!-- Simulated Lab Report Display -->
+                <div class="lg:col-span-7 bg-brand-card p-6 sm:p-8 rounded-2xl border border-brand-border relative overflow-hidden">
+                    <!-- Scanner Sweep Effect (hidden by default) -->
+                    <div id="scanLine" class="hidden absolute top-0 left-0 w-full h-1 bg-brand-accent shadow-[0_0_15px_#00FF66] z-20 animate-pulse"></div>
+
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-brand-border pb-4 mb-6 gap-2">
+                        <div>
+                            <span class="text-xs uppercase text-brand-subtext font-mono">Certificate Of Purity</span>
+                            <h4 id="reportBatchTitle" class="text-lg font-bold text-white">BATCH #NFE-8042 (Live Report)</h4>
+                        </div>
+                        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs px-3 py-1 rounded-full font-semibold flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            FSSAI Verified 0% Adulteration
+                        </span>
+                    </div>
+
+                    <!-- Report Data Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-brand-black p-4 rounded-xl border border-brand-border">
+                            <span class="text-xs text-brand-subtext">Milk Fat %</span>
+                            <div id="fatVal" class="text-2xl font-black text-brand-accent mt-1">4.8%</div>
+                            <span class="text-[10px] text-emerald-400">Natural Cream Peak</span>
+                        </div>
+                        <div class="bg-brand-black p-4 rounded-xl border border-brand-border">
+                            <span class="text-xs text-brand-subtext">SNF Ratio</span>
+                            <div id="snfVal" class="text-2xl font-black text-brand-cyan mt-1">8.95%</div>
+                            <span class="text-[10px] text-brand-subtext">Unaltered Solids</span>
+                        </div>
+                        <div class="bg-brand-black p-4 rounded-xl border border-brand-border col-span-2 sm:col-span-1">
+                            <span class="text-xs text-brand-subtext">Chemicals / Urea</span>
+                            <div class="text-2xl font-black text-emerald-400 mt-1">0.00%</div>
+                            <span class="text-[10px] text-emerald-400">100% Clean</span>
+                        </div>
+                    </div>
+
+                    <!-- Farm Source Detail -->
+                    <div class="bg-brand-black/60 p-4 rounded-xl border border-brand-border text-xs space-y-2 font-mono">
+                        <div class="flex justify-between">
+                            <span class="text-brand-subtext">Collection Source:</span>
+                            <span id="sourceVal" class="text-white font-medium">Satara A2 Eco-Farm Hub</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-brand-subtext">Collection Time:</span>
+                            <span class="text-white font-medium">Today, 04:30 AM</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-brand-subtext">Chilling Temp:</span>
+                            <span class="text-brand-cyan font-medium">3.2°C (Cold Chain Maintained)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: SAVAGE PACKAGING PREVIEW -->
+    <section id="packaging" class="py-20 border-b border-brand-border/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <h2 class="text-xs font-black uppercase tracking-widest text-brand-cyan mb-2">Zero Filter Branding</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Savage Packaging Preview</h3>
+                <p class="text-brand-subtext text-sm mt-3">We print the raw truth directly on our packets. Click any product to flip and inspect the blunt nutrition label.</p>
+            </div>
+
+            <!-- Product Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- MILK PACKET CARD -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 flex flex-col justify-between hover:border-brand-accent/50 transition-all group">
+                    <div>
+                        <div class="bg-emerald-500/10 text-brand-accent text-xs font-bold px-3 py-1 rounded-full w-fit mb-4">
+                            DAILY FRESH MILK
+                        </div>
+                        <!-- Front Dialogue Box -->
+                        <div class="bg-black p-6 rounded-xl border-2 border-brand-accent/40 mb-6 relative shadow-lg">
+                            <i data-lucide="quote" class="w-6 h-6 text-brand-accent/30 absolute top-2 right-2"></i>
+                            <p class="text-lg font-black text-white italic leading-snug">
+                                "Paani milana hota toh Bisleri ka business na shuru kar dete?"
+                            </p>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">NFE Whole Pure Milk</h4>
+                        <p class="text-xs text-brand-subtext">Raw, unpasteurized, cold-chain delivered straight from tested partner farms.</p>
+                    </div>
+
+                    <!-- Sarcastic Nutrition Table -->
+                    <div class="mt-6 pt-4 border-t border-brand-border text-xs font-mono bg-brand-black p-3 rounded-lg">
+                        <div class="text-brand-accent font-bold mb-1">NUTRITION & TRUTH FACTS:</div>
+                        <div class="flex justify-between py-0.5 border-b border-slate-800">
+                            <span class="text-slate-400">Pure Milk Fat</span>
+                            <span class="text-white">100% Real</span>
+                        </div>
+                        <div class="flex justify-between py-0.5 border-b border-slate-800">
+                            <span class="text-slate-400">Added Chemicals</span>
+                            <span class="text-emerald-400">0% (Zeher Nahi Hai)</span>
+                        </div>
+                        <div class="flex justify-between py-0.5">
+                            <span class="text-slate-400">Attitude Level</span>
+                            <span class="text-brand-cyan">Unapologetic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEER PACKET CARD -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 flex flex-col justify-between hover:border-brand-accent/50 transition-all group">
+                    <div>
+                        <div class="bg-cyan-500/10 text-brand-cyan text-xs font-bold px-3 py-1 rounded-full w-fit mb-4">
+                            MALAI PANEER
+                        </div>
+                        <!-- Front Dialogue Box -->
+                        <div class="bg-black p-6 rounded-xl border-2 border-brand-cyan/40 mb-6 relative shadow-lg">
+                            <i data-lucide="quote" class="w-6 h-6 text-brand-cyan/30 absolute top-2 right-2"></i>
+                            <p class="text-lg font-black text-white italic leading-snug">
+                                "Rubber nahi hai bhai, asli paneer hai. Softly chaba kar dekho!"
+                            </p>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">NFE Pure Malai Paneer</h4>
+                        <p class="text-xs text-brand-subtext">Made from 100% whole milk. Zero starch, zero synthetic coagulants.</p>
+                    </div>
+
+                    <!-- Sarcastic Nutrition Table -->
+                    <div class="mt-6 pt-4 border-t border-brand-border text-xs font-mono bg-brand-black p-3 rounded-lg">
+                        <div class="text-brand-cyan font-bold mb-1">NUTRITION & TRUTH FACTS:</div>
+                        <div class="flex justify-between py-0.5 border-b border-slate-800">
+                            <span class="text-slate-400">Starch / Palm Oil</span>
+                            <span class="text-emerald-400">0.00%</span>
+                        </div>
+                        <div class="flex justify-between py-0.5 border-b border-slate-800">
+                            <span class="text-slate-400">Texture</span>
+                            <span class="text-white">Melt In Mouth</span>
+                        </div>
+                        <div class="flex justify-between py-0.5">
+                            <span class="text-slate-400">Gym Gains Quality</span>
+                            <span class="text-brand-accent">100% Pure Protein</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CURD / DAHI PACKET CARD -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 flex flex-col justify-between hover:border-brand-accent/50 transition-all group">
+                    <div>
+                        <div class="bg-purple-500/10 text-purple-400 text-xs font-bold px-3 py-1 rounded-full w-fit mb-4">
+                            THICK DAHI
+                        </div>
+                        <!-- Front Dialogue Box -->
+                        <div class="bg-black p-6 rounded-xl border-2 border-purple-500/40 mb-6 relative shadow-lg">
+                            <i data-lucide="quote" class="w-6 h-6 text-purple-500/30 absolute top-2 right-2"></i>
+                            <p class="text-lg font-black text-white italic leading-snug">
+                                "Exam se pehle yeh dahi khao, Baap ka Trust aur Luck dono badhega."
+                            </p>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-2">NFE Thick Cultured Dahi</h4>
+                        <p class="text-xs text-brand-subtext">Naturally set in earthen pots style. Rich probiotics, zero gelatin.</p>
+                    </div>
+
+                    <!-- Sarcastic Nutrition Table -->
+                    <div class="mt-6 pt-4 border-t border-brand-border text-xs font-mono bg-brand-black p-3 rounded-lg">
+                        <div class="text-purple-400 font-bold mb-1">NUTRITION & TRUTH FACTS:</div>
+                        <div class="flex justify-between py-0.5 border-b border-slate-800">
+                            <span class="text-slate-400">Gelatin / Thickener</span>
+                            <span class="text-emerald-400">0% Absolute</span>
+                        </div>
+                        <div class="flex justify-between py-0.5 border-b border-slate-800">
+                            <span class="text-slate-400">Grandma Approval</span>
+                            <span class="text-white">100% Verified</span>
+                        </div>
+                        <div class="flex justify-between py-0.5">
+                            <span class="text-slate-400">Sour Guarantee</span>
+                            <span class="text-brand-accent">Double Money Back</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: PRE-ORDER / WAITLIST & CITY DEMAND METER -->
+    <section id="waitlist" class="py-20 relative bg-[#0B0D14]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Info & Live City Meter -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-xs font-black uppercase tracking-widest text-brand-accent">Demand Heatmap</span>
+                        <h3 class="text-3xl font-extrabold text-white mt-2">Bring NFE To Your Pincode</h3>
+                        <p class="text-sm text-brand-subtext mt-3">We launch city hubs based on pincode demand density. Cast your vote & reserve priority launch pricing.</p>
+                    </div>
+
+                    <!-- Live Demand Meter Box -->
+                    <div class="bg-brand-card p-6 rounded-2xl border border-brand-border space-y-4">
+                        <div class="flex items-center justify-between text-xs font-semibold">
+                            <span class="text-brand-subtext">Target Launch Threshold:</span>
+                            <span class="text-brand-accent font-mono">2,500 Backers</span>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden p-0.5 border border-brand-border">
+                            <div id="demandBar" class="bg-gradient-to-r from-brand-accent to-brand-cyan h-full rounded-full transition-all duration-700" style="width: 73.68%;"></div>
+                        </div>
+
+                        <div class="flex justify-between items-baseline pt-2">
+                            <div>
+                                <span id="currentWaitlistCount" class="text-3xl font-black text-white">1,842</span>
+                                <span class="text-xs text-brand-subtext ml-1">orders locked</span>
+                            </div>
+                            <span class="text-xs text-emerald-400 font-medium">73.6% Goal Reached</span>
+                        </div>
+                    </div>
+
+                    <!-- Active Top Pincodes -->
+                    <div class="space-y-2">
+                        <span class="text-xs uppercase font-bold text-slate-400">Top Trending Launch Zones:</span>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono">
+                            <span class="bg-brand-card px-3 py-1.5 rounded-lg border border-brand-border text-slate-300">Nagpur (440001) - <span class="text-brand-accent">542</span></span>
+                            <span class="bg-brand-card px-3 py-1.5 rounded-lg border border-brand-border text-slate-300">Mumbai (400001) - <span class="text-brand-cyan">420</span></span>
+                            <span class="bg-brand-card px-3 py-1.5 rounded-lg border border-brand-border text-slate-300">Delhi NCR - <span class="text-slate-300">310</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Waitlist Form -->
+                <div class="lg:col-span-7 bg-brand-card p-8 rounded-3xl border border-brand-border glow-cyan relative">
+                    <form id="waitlistForm" onsubmit="handleWaitlistSubmit(event)" class="space-y-5">
+                        <h4 class="text-xl font-bold text-white mb-2">Reserve Your Spots (Zero Pre-payment)</h4>
+                        
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">Full Name</label>
+                            <input type="text" id="userName" required placeholder="e.g. Rahul Sharma" class="w-full bg-brand-black border border-brand-border focus:border-brand-accent text-white px-4 py-3 rounded-xl outline-none transition text-sm">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">City Pincode</label>
+                                <input type="text" id="userPincode" required pattern="[0-9]{6}" placeholder="6-digit Pincode" class="w-full bg-brand-black border border-brand-border focus:border-brand-accent text-white px-4 py-3 rounded-xl outline-none transition text-sm font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">Phone Number</label>
+                                <input type="tel" id="userPhone" required placeholder="WhatsApp Number" class="w-full bg-brand-black border border-brand-border focus:border-brand-accent text-white px-4 py-3 rounded-xl outline-none transition text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2">Preferred Dairy Item</label>
+                            <select id="userProduct" class="w-full bg-brand-black border border-brand-border focus:border-brand-accent text-white px-4 py-3 rounded-xl outline-none transition text-sm">
+                                <option value="A2 Cow Milk">NFE A2 Pure Cow Milk</option>
+                                <option value="Pure Malai Paneer">NFE Pure Malai Paneer (Zero Starch)</option>
+                                <option value="Bilona Ghee">NFE Glass-Jar Bilona Ghee</option>
+                                <option value="Thick Dahi">NFE Earthen-Set Thick Dahi</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-accent hover:bg-emerald-400 text-black font-extrabold text-base py-4 rounded-xl transition shadow-lg glow-accent flex items-center justify-center gap-2">
+                            <span>Join Waitlist & Lock Free Sample</span>
+                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                        </button>
+
+                        <p class="text-[11px] text-brand-subtext text-center mt-2">
+                            By joining, you agree to receive SMS/WhatsApp notification when NFE hub goes live in your pincode.
+                        </p>
+                    </form>
+
+                    <!-- Success Message Box (Hidden by default) -->
+                    <div id="successState" class="hidden text-center py-12 space-y-4">
+                        <div class="w-16 h-16 bg-brand-accent/20 text-brand-accent rounded-full flex items-center justify-center mx-auto border border-brand-accent/40">
+                            <i data-lucide="party-popper" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-2xl font-black text-white">You're On The Priority List!</h4>
+                        <p class="text-xs text-brand-subtext max-w-sm mx-auto">
+                            We've logged your pincode vote. As soon as your neighborhood reaches launch density, you will receive an exclusive WhatsApp order link!
+                        </p>
+                        <div class="pt-4">
+                            <button onclick="resetWaitlistForm()" class="text-xs text-brand-cyan hover:underline font-semibold">Submit Another Order Vote</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 bg-black border-t border-brand-border text-brand-subtext text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl font-black gradient-text">NFE</span>
+                <span>© 2026 NFE Dairy Empire. All rights reserved.</span>
+            </div>
+            <div class="flex gap-6">
+                <a href="#lab-simulator" class="hover:text-white transition">Lab Testing Policy</a>
+                <a href="#packaging" class="hover:text-white transition">Zero Adulteration Guarantee</a>
+                <a href="#waitlist" class="hover:text-white transition">Farmer Network</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Batch Simulator Data
+        const batchData = {
+            "8040": { fat: "4.5%", snf: "8.80%", source: "Kolhapur Organic Milk Hub" },
+            "8041": { fat: "4.7%", snf: "8.90%", source: "Pune North Dairy Partner" },
+            "8042": { fat: "4.8%", snf: "8.95%", source: "Satara A2 Eco-Farm Hub" },
+            "8043": { fat: "4.6%", snf: "8.85%", source: "Nagpur Rural Collection Point" },
+            "8044": { fat: "4.9%", snf: "9.00%", source: "Nashik Pure Dairy Collective" },
+            "8045": { fat: "4.7%", snf: "8.92%", source: "Sangli Premium A2 Farm" },
+            "8046": { fat: "4.8%", snf: "8.88%", source: "Solapur Cold-Chain Hub" },
+            "8047": { fat: "5.0%", snf: "9.10%", source: "Satara Elite Dairy Farm" },
+            "8048": { fat: "4.6%", snf: "8.82%", source: "Amravati Partner Collective" }
+        };
+
+        const batchSlider = document.getElementById('batchSlider');
+        const batchLabel = document.getElementById('batchLabel');
+        const reportBatchTitle = document.getElementById('reportBatchTitle');
+        const fatVal = document.getElementById('fatVal');
+        const snfVal = document.getElementById('snfVal');
+        const sourceVal = document.getElementById('sourceVal');
+
+        batchSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            const data = batchData[val];
+            batchLabel.innerText = `BATCH #NFE-${val}`;
+            reportBatchTitle.innerText = `BATCH #NFE-${val} (Live Report)`;
+            fatVal.innerText = data.fat;
+            snfVal.innerText = data.snf;
+            sourceVal.innerText = data.source;
+        });
+
+        // Scan button simulation effect
+        function simulateScan() {
+            const scanLine = document.getElementById('scanLine');
+            scanLine.classList.remove('hidden');
+            
+            // Randomize slider slightly for realistic feel
+            const randomBatch = Math.floor(Math.random() * (8048 - 8040 + 1)) + 8040;
+            batchSlider.value = randomBatch;
+            batchSlider.dispatchEvent(new Event('input'));
+
+            setTimeout(() => {
+                scanLine.classList.add('hidden');
+            }, 1200);
+        }
+
+        // Waitlist Form Handler & Demand Counter
+        let currentCount = 1842;
+        const targetGoal = 2500;
+
+        function handleWaitlistSubmit(event) {
+            event.preventDefault();
+            
+            // Increment live counter
+            currentCount++;
+            document.getElementById('currentWaitlistCount').innerText = currentCount.toLocaleString();
+            document.getElementById('heroDemandCounter').innerText = currentCount.toLocaleString();
+
+            // Recalculate percentage
+            const newPercentage = ((currentCount / targetGoal) * 100).toFixed(1);
+            document.getElementById('demandBar').style.width = `${Math.min(newPercentage, 100)}%`;
+
+            // Toggle UI state
+            document.getElementById('waitlistForm').classList.add('hidden');
+            document.getElementById('successState').classList.remove('hidden');
+        }
+
+        function resetWaitlistForm() {
+            document.getElementById('waitlistForm').reset();
+            document.getElementById('waitlistForm').classList.remove('hidden');
+            document.getElementById('successState').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
